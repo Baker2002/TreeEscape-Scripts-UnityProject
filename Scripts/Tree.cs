@@ -58,7 +58,7 @@ public class Tree : MonoBehaviour
         {
             transform.position += new Vector3(0, 0.25f);
             transform.localScale += new Vector3(0, 0.5f);
-            boxCol.size -= new Vector2(0, 0.05f);
+            //boxCol.size -= new Vector2(0, 0.05f);
             player.waterCount -= waterReq;
             player.sunCount -= sunReq;
             treeLevel += 1;
@@ -104,7 +104,7 @@ public class Tree : MonoBehaviour
         
         transform.position -= new Vector3(0, 0.05f);
         transform.localScale -= new Vector3(0, 0.1f);
-        boxCol.size += new Vector2(0, 0.01f);
+        //boxCol.size += new Vector2(0, 0.01f);
         treeHP--;
         StartCoroutine(TreeHurt());
     }

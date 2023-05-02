@@ -12,22 +12,34 @@ public class Enemy : MonoBehaviour
     public int rand;
     public float speed;
     public WaveSystem wave;
-    
-
+    public GameObject hpUI;
+    private RectTransform hpUISprite;
     public AudioClip onTreeDestroyClip;
-
 
     private void Start()
     {
         target = GameObject.Find("Tree");
         tree = GameObject.FindGameObjectWithTag("Tree").GetComponent<Tree>();
         wave = FindObjectOfType<WaveSystem>();
+        hpUISprite = hpUI.GetComponent<RectTransform>();
     }
 
     private void FixedUpdate()
     {
         transform.position = Vector2.MoveTowards(transform.position,
             new Vector2(target.transform.position.x, target.transform.position.y),speed * Time.deltaTime);
+        if (hp > 1)
+        {
+            hpUISprite.localScale = new Vector3(1.2f, 0.2f);
+            
+            hpUI.transform.position = new Vector3(transform.position.x, transform.position.y - 0.35f, 0f);
+        }
+        else
+        {
+            hpUISprite.localScale = new Vector3(0.6f, 0.2f);
+            
+            hpUI.transform.position = new Vector3(transform.position.x - 0.1f, transform.position.y - 0.35f, 0f);
+        }
     }
 
     
@@ -62,8 +74,6 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    
 
     
 }
